@@ -1,7 +1,9 @@
-django==1.10.6
+django==1.11.3
 Markdown==2.6.8
 Pygments==2.2.0
 pytz==2016.10
 django-haystack==2.6.1
 jieba==0.38
 Whoosh==2.7.4
+pymongo==3.4.0
+#mongoengine==0.14.0

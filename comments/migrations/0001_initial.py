@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('blog', '0001_initial'),
+        ('nppower', '0001_initial'),
     ]
 
     operations = [
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('url', models.URLField(blank=True)),
                 ('text', models.TextField()),
                 ('created_time', models.DateTimeField(auto_now_add=True)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='blog.Post')),
+                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nppower.Post')),
             ],
         ),
     ]

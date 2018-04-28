@@ -1,0 +1,66 @@
+{% extends 'base.html'%} 
+{% block main %}
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+<div id=""><span class="label label-primary">马拉松42.195公里时间分配</span></div>
+<div id="el"></div>
+<form class="form-inline">
+<div class="col-md-8"><span class="label label-success">分段1</span><input type='text' id='minute_0'  value=5> <input type="text" id="second_0" value=30> </div> 
+<div class="col-md-8"><span class="label label-success">分段2</span><input type='text' id='minute_1' class="input-small" value=5> <input type="text" id="second_1" value=30> </div> 
+<div class="col-md-8"><span class="label label-success">分段3</span><input type='text' id='minute_2' class="input-small" value=5> <input type="text" id="second_2" value=30> </div> 
+<div class="col-md-8"><span class="label label-success">分段4</span><input type='text' id='minute_3' class="input-small" value=5> <input type="text" id="second_3" value=30> </div> 
+<div class="col-md-8"><span class="label label-success">分段5</span><input type='text' id='minute_4' class="input-small" value=5> <input type="text" id="second_4" value=30> </div> 
+</form>
+<div class='col-md-8'>
+<button class="btn btn-default" onclick="calculate();">总时间为</button><span  id = "total_time"></span>
+
+</div>
+<link rel="stylesheet" href="/static/marathon/css/multirangeslider.css">
+<script src="/static/marathon/js/multirangeslider.js?v=2"></script>
+<script>
+var distance = 42;
+var default_lap_time = 330;
+function secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? "小时  " : "小时 ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? "分 " : "分 ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? "秒" : "秒") : "";
+    return "    "+ hDisplay + mDisplay + sDisplay; 
+}
+
+var slider = new multirangeslider({
+    min: 0,
+    max: distance,
+    minWidth: 1,
+    step: 1
+});
+
+document.getElementById('el').appendChild(slider.el);
+
+function getTotalLength(data) {
+  var result = 0;
+  var total_range = 0;
+  for (var i = 0; i < data.length; i++) {
+    var time = parseInt($('#minute_'+i).val())*60 + parseInt($('#second_'+i).val());
+   
+    var range = data[i];
+    console.log(range);
+    total_range += range[1] - range[0];
+    result += (range[1] - range[0]) * time;
+  }
+  if(total_range < distance)result+=(distance - total_range)*default_lap_time;
+  return result + 72 ;
+}
+
+function calculate(){
+    var result = getTotalLength(slider.val());
+    $('#total_time').html(secondsToHms(result));
+
+} 
+</script>
+{% endblock main %}

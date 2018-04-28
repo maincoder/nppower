@@ -1,0 +1,14 @@
+#songOpt .play {     
+            float:left;
+            margin-left:0;
+            height: 46px;  
+            padding-left: 46px;
+            background: url(/static/audio/images/music_btn.png?624116d6dde7) no-repeat;  
+            background-repeat:no-repeat;
+            background-position: 0 -46px;
+       }  
+#songOpt .to-pause {  
+            background-position: 0 0;
+
+}  
+ 

@@ -1,0 +1,66 @@
+{% extends 'base.html'%} 
+{% block main %}
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+    <table class="table table_bar">
+    <th>
+    <form id="form_sort" method = "get">
+            <td>省份</td>
+            <td>排序</td>
+            <td>人民币GDP(Billion)<input type="button" name="order"  data-value="gdp_cny" value='↑'/><input type="button" name="order" data-value="-gdp_cny" value='↓'/></td>
+            <td>美元GDP(Billion)</td>
+            <td>增长率<input type="button" name="order" data-value="growth" value='↑'/><input type="button" name="order" data-value='-growth' value="↓"/></td>
+            <td>占比<input type="button" name="order" data-value="share" value='↑'/><input type="button" name="order" data-value="-share" value='↓'/></td>
+    </form>
+    </th>
+    {% for gdp in gdp_list %}
+        <tr class="">
+            <td>{{gdp.province }}</td>
+            <td>{{gdp.rank}}</td>
+            <td>{{gdp.gdp_cny}}</td>
+            <td>{{gdp.gdp_usd}}</td>
+            <td>{{gdp.growth}}%</td>
+            <td>{{gdp.share}}%</td>
+        </tr>
+    {% empty %}
+        <div class="no-post">暂时还没有发布的文章！</div>
+    {% endfor %}
+
+    </table>
+    {% if is_paginated %}
+        <div class="pagination">
+            <ul>
+                {% if first %}
+                    <li><a href="?page=1">1</a></li>
+                {% endif %}
+                {% if left %}
+                    {% if left_has_more %}
+                        <li><span>...</span></li>
+                    {% endif %}
+                    {% for i in left %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                <li class="current"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                {% if right %}
+                    {% for i in right %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                    {% if right_has_more %}
+                        <li><span>...</span></li>
+                    {% endif %}
+                {% endif %}
+                {% if last %}
+                    <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+<script>
+  $("input").click(function(){
+    window.location.href = '/gdp?order='+$(this).attr('data-value');
+  });
+</script>
+{% endblock main %}

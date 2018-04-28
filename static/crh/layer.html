@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  
+    <style type="text/css">
+      html,body,.map{
+        height: 100%;
+        margin: 0px;
+      }
+    </style>
+    <title>中国高铁线路图-ZCQ</title>
+  </head>
+  <body>
+    <div id="mapDiv" class="map" tabindex="0"></div>
+     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=83ce618c075958a5173ac0de7b23e245"></script>
+     <script src="/static/blog/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      var map, provinces, redPoint, bluePoint, canvas,geocoder, colorFlag = 0,
+        started;
+      AMap.service('AMap.Geocoder',function(){//回调函数
+      //实例化Geocoder
+      geocoder = new AMap.Geocoder({
+      //  city: "010"//城市，默认：“全国”
+      });
+      //TODO: 使用geocoder 对象完成相关功能
+     })
+      function buildPoint(color) {
+          var c = document.createElement("canvas");
+          c.width = c.height = 40;
+          var ctx = c.getContext("2d");
+          var grd = ctx.createRadialGradient(20, 20, 0, 20, 20, 20);
+          grd.addColorStop(0, color);
+          grd.addColorStop(1, "white");
+          ctx.fillStyle = grd;
+          ctx.beginPath();
+          ctx.arc(20, 20, 20, 0, 2 * Math.PI);
+          ctx.fill();
+          return c;
+      }
+      function onRender() {
+          for (var i = 0; i < provinces.length; i += 1) {
+              provinces[i].containerPos = map.lngLatToContainer(provinces[i].center);
+          }
+          draw();
+          if(!started){
+             autoSize();
+             started = true;
+          }
+      }
+      function autoSize () {
+          draw();
+          setTimeout(autoSize, 250);
+      }
+
+//这里就是缝隙
+function draw() {
+	var point = colorFlag ? bluePoint : redPoint;
+	var context = canvas.getContext('2d');
+	context.clearRect(0, 0, canvas.width, canvas.height)
+		for (var i = 0; i < provinces.length; i += 1) {
+			var province = provinces[i];
+			var radious = province.radious;
+			context.drawImage(point,
+					province.containerPos.x - radious,
+					province.containerPos.y - radious,
+					radious * 2,
+					radious * 2
+					);
+			province.radious = (radious + 1) % 10;
+		}
+
+	colorFlag = (colorFlag + 1) % 2;
+        arr_jinghu = [{"formattedAddress":"北京市丰台区北京南站","lng":116.379092,"lat":39.864881},{"formattedAddress":"河北省廊坊市安次区廊坊站","lng":116.708118,"lat":39.509275},{"formattedAddress":"天津市红桥区天津西站","lng":117.163261,"lat":39.158447},{"formattedAddress":"河北省沧州市沧县沧州西站","lng":116.76789,"lat":38.306999},{"formattedAddress":"山东省德州市德城区德州东站","lng":116.461465,"lat":37.409545},{"formattedAddress":"山东省济南市槐荫区济南西站","lng":116.892552,"lat":36.669033},{"formattedAddress":"山东省泰安市岱岳区泰安站","lng":117.035353,"lat":36.172188},{"formattedAddress":"山东省枣庄市滕州市滕州东站","lng":117.257683,"lat":35.090542},{"formattedAddress":"山东省枣庄市薛城区枣庄西站","lng":117.254572,"lat":34.791805},{"formattedAddress":"江苏省徐州市贾汪区徐州东站","lng":117.304004,"lat":34.267591},{"formattedAddress":"安徽省宿州市埇桥区宿州东站","lng":117.251064,"lat":33.675443},{"formattedAddress":"安徽省蚌埠市龙子湖区蚌埠南站","lng":117.441597,"lat":32.901631},{"formattedAddress":"安徽省滁州市定远县定远站","lng":117.688744,"lat":32.525436},{"formattedAddress":"安徽省滁州市全椒县高铁滁州站","lng":118.320349,"lat":32.198475},{"formattedAddress":"江苏省南京市雨花台区南京南站","lng":118.798175,"lat":31.96898},{"formattedAddress":"江苏省镇江市丹阳市丹阳北站","lng":119.592629,"lat":32.002104},{"formattedAddress":"江苏省常州市新北区常州北站","lng":119.955497,"lat":31.854055},{"formattedAddress":"江苏省无锡市锡山区无锡东站","lng":120.46023,"lat":31.596935},{"formattedAddress":"江苏省苏州市相城区苏州北站","lng":120.643315,"lat":31.421618},{"formattedAddress":"江苏省苏州市昆山市昆山南站","lng":120.950857,"lat":31.353254},{"formattedAddress":"上海市闵行区上海虹桥站","lng":121.320876,"lat":31.194237}];
+       arr_jingguang = [{"formattedAddress":"北京市丰台区北京西站","lng":116.321337,"lat":39.894966},{"formattedAddress":"河北省保定市涿州市涿州东站","lng":116.053207,"lat":39.45966},{"formattedAddress":"河北省保定市高碑店市高碑店东站","lng":115.9464,"lat":39.2886},{"formattedAddress":"河北省保定市莲池区保定东站","lng":115.601492,"lat":38.864142},{"formattedAddress":"河北省保定市定州市高铁定州东站","lng":115.07512,"lat":38.508258},{"formattedAddress":"河北省石家庄市正定县正定机场站","lng":114.70934,"lat":38.252036},{"formattedAddress":"石家庄市","lng":114.514862,"lat":38.042309},{"formattedAddress":"河北省石家庄市高邑县高邑西站","lng":114.531152,"lat":37.629509},{"formattedAddress":"河北省邢台市邢台县邢台东站","lng":114.59332,"lat":37.09195},{"formattedAddress":"河北省邯郸市邯山区邯郸东站","lng":114.558896,"lat":36.619724},{"formattedAddress":"河南省安阳市安阳县安阳东站","lng":114.453569,"lat":36.084124},{"formattedAddress":"河南省鹤壁市淇滨区鹤壁东站","lng":114.298955,"lat":35.706592},{"formattedAddress":"河南省新乡市牧野区新乡东站","lng":113.931237,"lat":35.354081},{"formattedAddress":"河南省郑州市金水区郑州东站","lng":113.778851,"lat":34.759462},{"formattedAddress":"河南省许昌市建安区许昌东站","lng":113.88643,"lat":34.04807},{"formattedAddress":"河南省漯河市源汇区漯河西站","lng":113.963272,"lat":33.57242},{"formattedAddress":"河南省驻马店市驿城区驻马店西站","lng":113.978624,"lat":33.000461},{"formattedAddress":"河南省信阳市平桥区明港东站","lng":114.065865,"lat":32.487701},{"formattedAddress":"河南省信阳市平桥区信阳东站","lng":114.160429,"lat":32.143908},{"formattedAddress":"湖北省孝感市大悟县孝感北站","lng":114.221842,"lat":31.586398},{"formattedAddress":"湖北省武汉市洪山区武汉站","lng":114.424252,"lat":30.607478},{"formattedAddress":"湖北省咸宁市咸安区咸宁北站","lng":114.301224,"lat":29.898879},{"formattedAddress":"湖北省咸宁市赤壁市赤壁北站","lng":113.900578,"lat":29.735707},{"formattedAddress":"湖南省岳阳市岳阳楼区岳阳东站","lng":113.207647,"lat":29.366583},{"formattedAddress":"湖南省岳阳市汨罗市汨罗东站","lng":113.144065,"lat":28.745926},{"formattedAddress":"湖南省长沙市雨花区长沙南站","lng":113.063633,"lat":28.146749},{"formattedAddress":"湖南省株洲市天元区株洲西站","lng":113.069908,"lat":27.790945},{"formattedAddress":"湖南省衡阳市衡山县衡山西站","lng":112.789406,"lat":27.247774},{"formattedAddress":"湖南省衡阳市衡南县衡阳东站","lng":112.709676,"lat":26.896446},{"formattedAddress":"湖南省衡阳市耒阳市耒阳西站","lng":112.788199,"lat":26.414996},{"formattedAddress":"湖南省郴州市北湖区郴州西站","lng":112.96966,"lat":25.735955},{"formattedAddress":"广东省韶关市武江区韶关站","lng":113.515283,"lat":24.750146},{"formattedAddress":"广东省清远市英德市英德西站","lng":113.352294,"lat":24.159454},{"formattedAddress":"广东省清远市清城区高铁清远站","lng":113.134569,"lat":23.693899},{"formattedAddress":"广东省广州市花都区广州北站","lng":113.204561,"lat":23.37696},{"formattedAddress":"广东省广州市番禺区广州南站","lng":113.269462,"lat":22.988878}];
+       context.beginPath();
+       for(var item of arr_jinghu){
+          var pixel = map.lnglatTocontainer([item.lng, item.lat]);
+          context.lineTo(pixel.getX(),pixel.getY());
+}
+       context.stroke();
+       context.beginPath();
+       for(var item of arr_jingguang){
+          var pixel = map.lnglatTocontainer([item.lng, item.lat]);
+          context.lineTo(pixel.getX(),pixel.getY());
+}
+       context.strokeStyle="red";
+       
+       if(map.getZoom() >= 6){
+       context.lineWidth=5;}
+       else context.lineWidth = 3;
+       context.stroke();
+	/*for(var i = 0;i < provinces.length;i+=1){
+	  var pos = provinces[i].containerPos;
+	  context.lineTo(pos.x,pos.y);
+	  }*/
+     } 
+      function create() {
+        map = new AMap.Map('mapDiv', {
+            resizeEnable: true,
+            center: new AMap.LngLat(108.979608,34.916582),// 西安,铜川
+            zoom:5
+        });
+        map.plugin(['AMap.CustomLayer', 'AMap.DistrictSearch'], function() {
+            var search = new AMap.DistrictSearch();
+            search.search('中国', function(status, data) {
+                if (status === 'complete') {
+                    provinces = data['districtList'][0]['districtList']
+                    for (var i = 0; i < provinces.length; i += 1) {
+                       provinces[i].radious = Math.max(2, Math.floor(Math.random() * 10));
+                    }
+                    redPoint = buildPoint('red');
+                    bluePoint = buildPoint('rgba(17,0,255,255');
+                    canvas = document.createElement('canvas');
+                    canvas.width = map.getSize().width;
+                    canvas.height = map.getSize().height;
+                    var cus = new AMap.CustomLayer(canvas, {
+                        zooms: [3, 8],
+                        zIndex: 12
+                    });
+                    cus.render = onRender;
+                    cus.setMap(map)
+                }
+            });
+        });
+      map.plugin(["AMap.ToolBar"],function(){   //在地图中添加ToolBar插件      
+        toolBar = new AMap.ToolBar();  
+        map.addControl(toolBar);       
+      });  
+      }
+     function get_pos(){
+        var railway_jinghu = ['北京南站','廊坊站','天津西站','沧州西站','德州东站','济南西站','泰安站曲阜东站','滕州东站','枣庄西站','徐州东站','宿州东站','蚌埠南站','定远站','滁州站','南京南站','镇江西站丹阳北站','常州北站','无锡东站','苏州北站','昆山南站','上海虹桥站'];
+        //京广铁路
+        var railway = ["北京西站","涿州东站","高碑店东站","保定东站","定州东站","正定机场站","石家庄","高邑西站","邢台东站","邯郸东站","安阳东站","鹤壁东站","新乡东站","郑州东站","许昌东站","漯河西站","驻马店西站","明港东站","信阳东站","孝感北站","武汉站","咸宁北站","赤壁北站","岳阳东站","汨罗东站","长沙南站","株洲西站","衡山西站","衡阳东站","耒阳西站","郴州西站","韶关站","英德西站","清远站","广州北站","广州南站"];
+        var path = [];
+        
+  	(function iterator(i){
+            if(i==railway.length){
+            console.log(JSON.stringify(path));
+            return;
+        }
+        //异步请求，
+    	geocoder.getLocation(railway[i], function(status, result) {
+ 
+      	if (status === 'complete' && result.info === 'OK'){
+                var locat = result.geocodes[0];
+                var neat_locat = {"formattedAddress":locat.formattedAddress,"lng":locat.location.lng,"lat":locat.location.lat};
+                console.log(neat_locat);
+                path.push(neat_locat);
+                iterator(i+1);
+                
+        }else{
+                alert(railway[item]+':fail');
+                iterator(i+1);
+      	}
+        }); 
+      })(0); 
+
+          console.log('TEST');
+      }
+   // get_pos();
+     create()
+  </script>
+  <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+  </body>
+  
+</html>

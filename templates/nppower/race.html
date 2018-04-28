@@ -1,0 +1,186 @@
+{% extends 'base.html'%} 
+{% load staticfiles %}
+{% load nppower_tags %}
+{% block head %}
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"> 
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+	<link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
+	<link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <link href="{% static 'nppower/css/bootstrap-datetimepicker.css' %}" rel="stylesheet"/>
+        <script src="{% static 'nppower/js/moment-whth-locale.js' %}"></script>
+        <script src="{% static 'nppower/js/bootstrap-datetimepicker.js' %}"></script>
+{% endblock head %}
+{% block main %}
+
+    <table class="table table_bar">
+    <tr>
+            <td>名称</td>
+            <td>时间</td>
+            <td>距离比赛倒计时-</td>
+            <td>与下场比赛间隔</td>
+            <td>操作</td>
+    </tr>
+    {% for race in race_list %}
+          
+        <tr class="">
+            <td>{{race.name }}</td>
+            <td>{{race.date}}</td>
+            <td class='cd'></td>
+            <td class='inter'></td>
+            <td>
+               <button class="btn btn-default" type="button" onclick="delete_race({{race.time}})">删除</button></td>
+            <input type="hidden" class = 'time' value = {{race.time}} />
+            <input type="hidden" class = 'inter' value = {{race.inter}} />
+        </tr>
+    {% empty %}
+        <div class="no-post">暂时还没有发布的文章！</div>
+    {% endfor %}
+
+    </table>
+    {% if is_paginated %}
+        <div class="pagination">
+            <ul>
+                {% if first %}
+                    <li><a href="?page=1">1</a></li>
+                {% endif %}
+                {% if left %}
+                    {% if left_has_more %}
+                        <li><span>...</span></li>
+                    {% endif %}
+                    {% for i in left %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                <li class="current"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                {% if right %}
+                    {% for i in right %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                    {% if right_has_more %}
+                        <li><span>...</span></li>
+                    {% endif %}
+                {% endif %}
+                {% if last %}
+                    <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+     <div class='row'>
+        <div class='col-sm-2'>名称</div>
+          <div class='col-sm-6'> <input name="name" id ="racename" type="text"   class="form-control"/></div>
+     </div>
+     <div class="row">
+        <div class='col-sm-2'>时间</div>
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' id='racetime' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+      </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                locale:'zh-cn',
+                stepping:30,
+                format: 'YYYY-MM-DD HH:mm'});
+
+            });
+        </script>
+     <div class="row">
+      <button class="btn btn-default" type="button" onclick="commit_race()">保存</button>
+     </div>
+
+<script>
+function commit_race() {
+        if($.trim($('#racename').val()) == '')return false;
+        $.ajax({
+        //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/marathon/post" ,//url
+            data: {'racetime':$('#racetime').val(),'name':$('#racename').val()},
+            success: function (result) {
+               console.log(result);//打印服务端返回的数据(调试用)
+                if (result.suc == 1) {
+                    alert("提交成功!");
+                    window.location.reload();
+                }
+                   ;
+            },
+            error : function() {
+                alert("异常！");
+              }
+            });
+}
+function delete_race(racetime) {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/marathon/delete" ,//url
+                data: {'racetime':racetime},
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.suc == 1) {
+                        alert("删除成功!");
+                        window.location.reload();
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+}
+function countdown(div, target_date){
+  setInterval(() => {
+    let distance = parseInt(target_date) - new Date().getTime();
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+    let str = "<span class='label label-success'>"+days+"</span>" + " 天 " + hours + " 小时 "
+      + minutes + " 分 ";
+    if (seconds < 10) {str = str + "0" + seconds } else { str = str + seconds};
+      div.html(str);
+
+    if (distance < 0) {
+      clearInterval();
+      div.html("已结束");
+    }
+  }, 1000);
+}
+
+$(function(){  
+  $("input.time").each(function(){
+    let parent = $(this).parent();
+    countdown(parent.find('td.cd').first(),$(this).val()); 
+    let distance =  parseInt(parent.find("input.inter").val()); 
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    parent.prev().find('td.inter').html(days+" 天 "+hours + " 小时")
+
+       
+});
+    // do something  
+}); 
+</script>
+{% endblock main %}

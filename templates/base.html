@@ -1,32 +1,36 @@
 {% load staticfiles %}
-{% load blog_tags %}
+{% load nppower_tags %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Black &amp; White</title>
+    <title>机智未来</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- css -->
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/highlights/github.css' %}">
-
+   <!-- css -->
+{% compress css %}
+    <link rel="stylesheet" href="{% static 'nppower/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'nppower/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'nppower/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'nppower/css/highlights/github.css' %}">
     <style>
         span.highlighted {
             color: red;
         }
     </style>
 
+{% endcompress %}
     <!-- js -->
-    <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>
-    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'blog/js/pace.min.js' %}"></script>
-    <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+{% compress js %}
+    <script src="{% static 'nppower/js/jq-2.1.min.js' %}"></script>
+    <script src="{% static 'nppower/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'nppower/js/pace.min.js' %}"></script>
+    <script src="{% static 'nppower/js/modernizr.custom.js' %}"></script>
+{% endcompress %}
+    {% block head %} {% endblock head %}
 </head>
 
 <body>
@@ -35,7 +39,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-5 col-xs-8">
                 <div class="logo">
-                    <h1><a href="{% url 'blog:index' %}"><b>Black</b> &amp; White</a></h1>
+                    <h1><a href="{% url 'nppower:index' %}"><b>未来能源网</b></a></h1>
                 </div>
             </div><!-- col-md-4 -->
             <div class="col-md-8 col-sm-7 col-xs-4">
@@ -48,10 +52,9 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'nppower:index' %}" data-hover="首页">首页</a></li>
+                            <li class="cl-effect-11"><a href="/marathon/pacer" data-hover="马拉松配速计算器">马拉松配速</a></li>
+                            <li class="cl-effect-11"><a href="/race" data-hover='参赛计划'>参赛计划</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -78,7 +81,7 @@
                 {% block main %}
                 {% endblock main %}
             </main>
-            <aside class="col-md-4">
+            <!--aside class="col-md-4">
                 {% block toc %}
                 {% endblock toc %}
                 <div class="widget widget-recent-posts">
@@ -100,7 +103,7 @@
                     <ul>
                         {% for date in date_list %}
                             <li>
-                                <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }}
+                                <a href="{% url 'nppower:archives' date.year date.month %}">{{ date.year }}
                                     年 {{ date.month }} 月</a>
                             </li>
                         {% empty %}
@@ -115,7 +118,7 @@
                     <ul>
                         {% for category in category_list %}
                             <li>
-                                <a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span
+                                <a href="{% url 'nppower:category' category.pk %}">{{ category.name }} <span
                                         class="post-count">({{ category.num_posts }})</span></a>
                             </li>
                         {% empty %}
@@ -130,7 +133,7 @@
                     <ul>
                         {% for tag in tag_list %}
                             <li>
-                                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                                <a href="{% url 'nppower:tag' tag.pk %}">{{ tag.name }}</a>
                             </li>
                         {% empty %}
                             暂无标签！
@@ -141,7 +144,7 @@
                 <div class="rss">
                     <a href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
-            </aside>
+            </aside-->
         </div>
     </div>
 </div>
@@ -149,9 +152,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p class="copyright">&copy 2017 - 采集自<a href="http://www.cssmoban.com/"
-                                                        target="_blank" title="模板之家">模板之家</a>
-                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
+                <p class="copyright"><a href="http://www.miitbeian.gov.cn/"
+                                                        target="_blank" title="模板之家">粤ICP备17145082号-1 @深圳机智未来科技有限公司 All Right Reserved</a>
                 </p>
             </div>
         </div>
@@ -163,15 +165,14 @@
     <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
     <nav>
         <ul>
-            <li><a href="{% url 'blog:index' %}">首页</a></li>
-            <li><a href="#">博客</a></li>
+            <li><a href="{% url 'nppower:index' %}">首页</a></li>
             <li><a href="#">关于</a></li>
             <li><a href="#">联系</a></li>
         </ul>
     </nav>
 </div>
-
-<script src="{% static 'blog/js/script.js' %}"></script>
-
+{% compress js%}
+<script src="{% static 'nppower/js/script.js' %}"></script>
+{% endcompress %}
 </body>
 </html>

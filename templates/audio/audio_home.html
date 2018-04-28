@@ -1,0 +1,33 @@
+{% extends 'base.html'%} 
+{% load compress %}
+{% block main %}
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+{% compress css %}
+<link rel="stylesheet" href="/static/audio/css/play.css?v=2">
+{% endcompress %}
+<div class='col-md-8' id='songOpt'>
+<a class= "play to-pause" id="audioBtn" style="cursor:pointer;" onclick="autoPlay()"></a>  
+<audio id="bgMusic" src="/static/audio/music/jay.mp3" autoplay preload loop="loop"></audio>  
+
+</div>
+{% compress js %}
+<script src="/static/marathon/js/multirangeslider.js?v=2"></script>
+<script>
+function autoPlay() {  
+            var myAuto = document.getElementById('bgMusic');  
+            var btn = document.getElementById('audioBtn');  
+            if (myAuto.paused) {  
+                myAuto.play();  
+                btn.classList.add("to-pause");  
+            } else {  
+                myAuto.pause();  
+  
+                btn.classList.remove("to-pause");  
+            }  
+  
+        }  
+</script>
+{% endcompress %}
+{% endblock main %}

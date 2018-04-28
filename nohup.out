@@ -1,0 +1,132 @@
+[uWSGI] getting INI configuration from uwsgi_django_blog.ini
+*** Starting uWSGI 2.0.15 (64bit) on [Fri Jul 14 10:32:01 2017] ***
+compiled with version: 4.8.3 20140911 (Red Hat 4.8.3-9) on 14 July 2017 08:34:30
+os: Linux-4.9.32-15.41.amzn1.x86_64 #1 SMP Thu Jun 22 06:20:54 UTC 2017
+nodename: ip-172-31-15-114
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/ec2-user/Envs/env2/django-blog-tutorial
+detected binary path: /home/ec2-user/Envs/env2/bin/uwsgi
+chdir() to /home/ec2-user/Envs/env2/django-blog-tutorial/
+your processes number limit is 3904
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8000 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:34079 (port auto-assigned) fd 3
+Python version: 3.5.1 (default, Sep 13 2016, 18:48:37)  [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)]
+Set PythonHome to /home/ec2-user/Envs/env2/
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x739040
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218280 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x739040 pid: 16683 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 16683)
+spawned uWSGI worker 1 (pid: 16685, cores: 1)
+spawned uWSGI worker 2 (pid: 16686, cores: 1)
+spawned uWSGI http 1 (pid: 16687)
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+[pid: 16685|app: 0|req: 1/1] 123.116.49.225 () {36 vars in 602 bytes} [Fri Jul 14 18:49:14 2017] GET / => generated 7404 bytes in 2471 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+Gdp object
+[pid: 16686|app: 0|req: 1/2] 123.116.49.225 () {36 vars in 602 bytes} [Fri Jul 14 18:49:14 2017] GET / => generated 7404 bytes in 2468 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+Not Found: /static/blog/css/bootstrap.min.css
+[pid: 16685|app: 0|req: 2/3] 123.116.49.225 () {36 vars in 627 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/bootstrap.min.css => generated 3715 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/custom.css
+[pid: 16686|app: 0|req: 2/4] 123.116.49.225 () {36 vars in 613 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/custom.css => generated 3694 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/bootstrap.min.js
+[pid: 16685|app: 0|req: 3/5] 123.116.49.225 () {36 vars in 609 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/bootstrap.min.js => generated 3709 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/jquery-2.1.3.min.js
+Not Found: /static/blog/css/highlights/github.css
+[pid: 16686|app: 0|req: 3/6] 123.116.49.225 () {36 vars in 615 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/jquery-2.1.3.min.js => generated 3718 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/pace.css
+[pid: 16685|app: 0|req: 4/7] 123.116.49.225 () {36 vars in 636 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/highlights/github.css => generated 3727 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 16686|app: 0|req: 4/8] 123.116.49.225 () {36 vars in 610 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/pace.css => generated 3688 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/bootstrap.min.css
+[pid: 16685|app: 0|req: 5/9] 123.116.49.225 () {36 vars in 628 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/bootstrap.min.css => generated 3715 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/custom.css
+Not Found: /static/blog/js/jquery-2.1.3.min.js
+[pid: 16686|app: 0|req: 5/10] 123.116.49.225 () {36 vars in 614 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/custom.css => generated 3694 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 16685|app: 0|req: 6/11] 123.116.49.225 () {36 vars in 615 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/jquery-2.1.3.min.js => generated 3718 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/highlights/github.css
+[pid: 16686|app: 0|req: 6/12] 123.116.49.225 () {36 vars in 636 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/highlights/github.css => generated 3727 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/pace.css
+Not Found: /static/blog/js/bootstrap.min.js
+[pid: 16685|app: 0|req: 7/13] 123.116.49.225 () {36 vars in 610 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/css/pace.css => generated 3688 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 16686|app: 0|req: 7/14] 123.116.49.225 () {36 vars in 609 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/bootstrap.min.js => generated 3709 bytes in 3 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/pace.min.js
+[pid: 16685|app: 0|req: 8/15] 123.116.49.225 () {36 vars in 599 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/pace.min.js => generated 3694 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/script.js
+[pid: 16686|app: 0|req: 8/16] 123.116.49.225 () {36 vars in 595 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/script.js => generated 3688 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/modernizr.custom.js
+[pid: 16685|app: 0|req: 9/17] 123.116.49.225 () {36 vars in 615 bytes} [Fri Jul 14 18:49:17 2017] GET /static/blog/js/modernizr.custom.js => generated 3718 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/modernizr.custom.js
+Not Found: /static/blog/js/script.js
+[pid: 16686|app: 0|req: 9/18] 123.116.49.225 () {36 vars in 595 bytes} [Fri Jul 14 18:49:18 2017] GET /static/blog/js/script.js => generated 3688 bytes in 9 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 16685|app: 0|req: 10/19] 123.116.49.225 () {36 vars in 615 bytes} [Fri Jul 14 18:49:18 2017] GET /static/blog/js/modernizr.custom.js => generated 3718 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/pace.min.js
+[pid: 16686|app: 0|req: 10/20] 123.116.49.225 () {36 vars in 599 bytes} [Fri Jul 14 18:49:18 2017] GET /static/blog/js/pace.min.js => generated 3694 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 16685|app: 0|req: 11/21] 123.116.49.225 () {36 vars in 606 bytes} [Fri Jul 14 18:55:53 2017] GET / => generated 7404 bytes in 16 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+Not Found: /static/blog/css/custom.css
+[pid: 16686|app: 0|req: 11/22] 123.116.49.225 () {36 vars in 623 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/css/custom.css => generated 3698 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/highlights/github.css
+[pid: 16685|app: 0|req: 12/23] 123.116.49.225 () {36 vars in 645 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/css/highlights/github.css => generated 3731 bytes in 8 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/bootstrap.min.css
+[pid: 16686|app: 0|req: 12/24] 123.116.49.225 () {36 vars in 637 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/css/bootstrap.min.css => generated 3719 bytes in 10 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/css/pace.css
+[pid: 16685|app: 0|req: 13/25] 123.116.49.225 () {36 vars in 619 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/css/pace.css => generated 3692 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/bootstrap.min.js
+[pid: 16686|app: 0|req: 13/26] 123.116.49.225 () {36 vars in 618 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/js/bootstrap.min.js => generated 3713 bytes in 6 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/jquery-2.1.3.min.js
+[pid: 16685|app: 0|req: 14/27] 123.116.49.225 () {36 vars in 624 bytes} [Fri Jul 14 18:55:53 2017] GET /static/blog/js/jquery-2.1.3.min.js => generated 3722 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/script.js
+[pid: 16686|app: 0|req: 14/28] 123.116.49.225 () {36 vars in 604 bytes} [Fri Jul 14 18:55:54 2017] GET /static/blog/js/script.js => generated 3692 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/modernizr.custom.js
+[pid: 16685|app: 0|req: 15/29] 123.116.49.225 () {36 vars in 624 bytes} [Fri Jul 14 18:55:54 2017] GET /static/blog/js/modernizr.custom.js => generated 3722 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/blog/js/pace.min.js
+[pid: 16686|app: 0|req: 15/30] 123.116.49.225 () {36 vars in 608 bytes} [Fri Jul 14 18:55:55 2017] GET /static/blog/js/pace.min.js => generated 3698 bytes in 5 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 16685|app: 0|req: 16/31] 123.116.49.225 () {36 vars in 578 bytes} [Fri Jul 14 18:55:55 2017] GET /favicon.ico => generated 3653 bytes in 4 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+[uwsgi-http key: 127.0.0.1:8000 client_addr: 127.0.0.1 client_port: 47813] hr_read(): Connection reset by peer [plugins/http/http.c line 916]
+[pid: 16685|app: 0|req: 17/32] 127.0.0.1 () {32 vars in 369 bytes} [Fri Jul 14 18:59:26 2017] GET / => generated 56320 bytes in 42 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+[uwsgi-http key: 127.0.0.1:8000 client_addr: 127.0.0.1 client_port: 48837] hr_read(): Connection reset by peer [plugins/http/http.c line 916]
+[pid: 16685|app: 0|req: 18/33] 127.0.0.1 () {32 vars in 369 bytes} [Fri Jul 14 18:59:46 2017] GET / => generated 56320 bytes in 37 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+[uwsgi-http key: localhost:8000 client_addr: 127.0.0.1 client_port: 49861] hr_read(): Connection reset by peer [plugins/http/http.c line 916]
+[pid: 16685|app: 0|req: 19/34] 127.0.0.1 () {32 vars in 369 bytes} [Fri Jul 14 19:00:02 2017] GET / => generated 56320 bytes in 38 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+Invalid HTTP_HOST header: '0:8000'. You may need to add '0' to ALLOWED_HOSTS.
+[uwsgi-http key: 0:8000 client_addr: 127.0.0.1 client_port: 50885] hr_read(): Connection reset by peer [plugins/http/http.c line 916]
+[pid: 16685|app: 0|req: 20/35] 127.0.0.1 () {32 vars in 361 bytes} [Fri Jul 14 19:00:08 2017] GET / => generated 56186 bytes in 37 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+[uwsgi-http key: 127.0.0.1:8000 client_addr: 127.0.0.1 client_port: 51909] hr_read(): Connection reset by peer [plugins/http/http.c line 916]
+[pid: 16685|app: 0|req: 21/36] 127.0.0.1 () {32 vars in 375 bytes} [Fri Jul 14 19:00:51 2017] GET /gdp => generated 56356 bytes in 37 msecs (HTTP/1.1 400) 1 headers in 53 bytes (1 switches on core 0)
+Fri Jul 14 19:38:48 2017 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Fri Jul 14 19:38:48 2017 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+/usr/sbin/uwsgi: invalid option -- 'n'
+getopt_long() error
+[uWSGI] getting INI configuration from uwsgi_django_blog.ini
